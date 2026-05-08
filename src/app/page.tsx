@@ -67,12 +67,22 @@ export default async function Home() {
               Explorar Tienda
             </Link>
             <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897866568"}`}
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897071052"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-10 py-4 bg-[#25D366] text-white font-bold rounded-full hover:bg-[#1DA851] transition-all shadow-xl hover:shadow-green-100 hover:scale-105 flex items-center justify-center gap-2"
             >
-              💬 Consultar por WhatsApp
+              💬 WhatsApp
+            </a>
+            <a
+              href={`https://instagram.com/${process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "emily_creaciones9122"}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-4 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white font-bold rounded-full hover:opacity-90 transition-all shadow-xl hover:shadow-pink-100 hover:scale-105 flex items-center justify-center gap-2"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg> Instagram
             </a>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400 font-medium px-4">

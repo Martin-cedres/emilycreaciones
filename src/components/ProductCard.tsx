@@ -49,7 +49,7 @@ export default function ProductCard({ producto }: Props) {
           </p>
         )}
         <div className="mt-3 flex items-center gap-1.5 text-xs text-brand-wood font-medium bg-brand-beige/50 px-2 py-1.5 rounded-lg w-fit border border-pink-50">
-          <span>🔨</span> Hecho a mano a pedido
+          <span>🔨</span> Hecho a mano
         </div>
       </div>
     </Link>

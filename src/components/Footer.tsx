@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   const insta = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "emily_creaciones9122";
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897866568";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897071052";
 
   return (
     <footer className="bg-gray-900 text-gray-300 mt-16">

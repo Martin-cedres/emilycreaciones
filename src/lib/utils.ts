@@ -19,7 +19,7 @@ export function formatPrice(price: number | null): string {
 }
 
 export function whatsappLink(productName?: string, productUrl?: string): string {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897866568";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897071052";
   const baseMsg = productName
     ? `Hola, me interesa encargar: ${productName}${productUrl ? ` (${productUrl})` : ""}. ¿Tienen disponibilidad de agenda/colores?`
     : "Hola! Quisiera hacer una consulta para agendar un pedido.";
