@@ -31,7 +31,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nombre y descripción son obligatorios." }, { status: 400 });
     }
 
-    const slug = slugify(nombre) + "-" + Date.now().toString(36);
+    // Generar slug amigable (ej: "mesa-infantil", "mesa-infantil-2", etc.)
+    let baseSlug = slugify(nombre);
+    let slug = baseSlug;
+    let counter = 1;
+    
+    // Verificar si ya existe un producto con ese slug
+    while (true) {
+      const existing = await sql`SELECT id FROM productos WHERE slug = ${slug} LIMIT 1`;
+      if (existing.length === 0) break;
+      counter++;
+      slug = `${baseSlug}-${counter}`;
+    }
     const precioVal = precio ? parseFloat(precio) : null;
     const imagenesJson = JSON.stringify(imagenes || []);
     const catVal = categoria || "General";
