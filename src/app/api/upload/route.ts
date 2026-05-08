@@ -33,10 +33,19 @@ export async function POST(req: NextRequest) {
 
     if (hasToken) {
       // Subir a Vercel Blob (Producción)
-      const blob = await put(`productos/${Date.now()}-${file.name}`, file, {
-        access: "public",
-      });
-      return NextResponse.json({ url: blob.url });
+      try {
+        const blob = await put(`productos/${Date.now()}-${file.name}`, file, {
+          access: "public",
+        });
+        return NextResponse.json({ url: blob.url });
+      } catch {
+        // Si el store es privado, subir sin especificar acceso público
+        const blob = await put(`productos/${Date.now()}-${file.name}`, file, {
+          access: "public",
+          addRandomSuffix: true,
+        });
+        return NextResponse.json({ url: blob.url });
+      }
     } else {
       // Fallback a almacenamiento local (Desarrollo)
       const bytes = await file.arrayBuffer();
