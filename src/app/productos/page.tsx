@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard";
-import { sql } from "@/lib/db";
+import { sql, initDb } from "@/lib/db";
 import type { Producto } from "@/lib/types";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 async function getProductos(categoria?: string, page: number = 1): Promise<{ productos: Producto[]; total: number }> {
   const offset = (page - 1) * ITEMS_PER_PAGE;
   try {
+    await initDb();
     if (categoria && categoria !== "Todos") {
       const rows = await sql`SELECT * FROM productos WHERE categoria = ${categoria} ORDER BY creado_en DESC LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
       const countRes = await sql`SELECT count(*) FROM productos WHERE categoria = ${categoria}`;

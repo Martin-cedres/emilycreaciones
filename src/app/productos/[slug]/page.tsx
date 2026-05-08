@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { sql } from "@/lib/db";
+import { sql, initDb } from "@/lib/db";
 import { formatPrice, whatsappLink } from "@/lib/utils";
 import { generateProductMetadata } from "@/lib/seo";
 import type { Producto } from "@/lib/types";
@@ -18,6 +18,7 @@ interface Props {
 
 async function getProducto(slug: string): Promise<Producto | null> {
   try {
+    await initDb();
     const rows = await sql`SELECT * FROM productos WHERE slug = ${slug} LIMIT 1`;
     return (rows[0] as Producto) || null;
   } catch {

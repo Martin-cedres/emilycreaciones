@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
-import { sql } from "@/lib/db";
+import { sql, initDb } from "@/lib/db";
 import type { Producto } from "@/lib/types";
 import * as motion from "framer-motion/client";
 
@@ -9,6 +9,7 @@ export const revalidate = 60; // ISR: regenera cada 60 segundos
 
 async function getDestacados(): Promise<Producto[]> {
   try {
+    await initDb();
     const rows = await sql`
       SELECT * FROM productos WHERE destacado = true ORDER BY creado_en DESC LIMIT 6
     `;
@@ -20,6 +21,7 @@ async function getDestacados(): Promise<Producto[]> {
 
 async function getRecientes(): Promise<Producto[]> {
   try {
+    await initDb();
     const rows = await sql`
       SELECT * FROM productos ORDER BY creado_en DESC LIMIT 8
     `;

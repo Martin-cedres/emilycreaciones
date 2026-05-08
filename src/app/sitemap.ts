@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { sql } from '@/lib/db';
+import { sql, initDb } from '@/lib/db';
 import type { Producto } from '@/lib/types';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -8,6 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Obtener todos los productos para el sitemap
   let productos: Producto[] = [];
   try {
+    await initDb();
     const rows = await sql`SELECT slug, creado_en FROM productos`;
     productos = rows as Producto[];
   } catch (e) {
