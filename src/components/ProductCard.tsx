@@ -23,7 +23,7 @@ export default function ProductCard({ producto }: Props) {
           alt={producto.nombre}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-contain group-hover:scale-105 transition-transform duration-500"
         />
         {producto.destacado && (
           <span className="absolute top-3 left-3 bg-brand-pink text-white text-xs font-bold px-3 py-1 rounded-full shadow">

@@ -37,7 +37,7 @@ export default function ProductGallery({ imagenes, nombre }: Props) {
               src={imagenes[selected]}
               alt={nombre}
               fill
-              className="object-cover"
+              className="object-contain"
               priority
             />
           </motion.div>
@@ -59,7 +59,7 @@ export default function ProductGallery({ imagenes, nombre }: Props) {
                 src={img}
                 alt={`${nombre} miniatura ${i + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </button>
           ))}
