@@ -1,13 +1,19 @@
-import { neon } from '@neondatabase/serverless';
+import { neon, type NeonQueryFunction } from '@neondatabase/serverless';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('La variable de entorno DATABASE_URL no está configurada.');
-}
+/**
+ * Fallback que arroja error solo cuando se intenta ejecutar una consulta.
+ * Esto permite que Next.js importe el módulo durante el build sin fallar.
+ */
+const sqlFallback = ((..._args: any[]) => {
+  throw new Error('La variable de entorno DATABASE_URL no está configurada. Verifica los secretos en Vercel.');
+}) as unknown as NeonQueryFunction<false, false>;
 
-// Conexión principal para consultas
-export const sql = neon(process.env.DATABASE_URL);
+// Exportamos la conexión real o el fallback según la disponibilidad de la URL
+export const sql = process.env.DATABASE_URL 
+  ? neon(process.env.DATABASE_URL) 
+  : sqlFallback;
 
-// Función de inicialización de la base de datos (se ejecuta solo si es necesario)
+// Función de inicialización de la base de datos
 export async function initDb() {
   await sql`
     CREATE TABLE IF NOT EXISTS productos (
