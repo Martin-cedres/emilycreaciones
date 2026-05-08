@@ -9,8 +9,11 @@ const sqlFallback = ((..._args: any[]) => {
 }) as unknown as NeonQueryFunction<false, false>;
 
 // Exportamos la conexión real o el fallback según la disponibilidad de la URL
-export const sql = process.env.DATABASE_URL 
-  ? neon(process.env.DATABASE_URL) 
+// Vercel Postgres suele usar POSTGRES_URL por defecto
+const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+
+export const sql = connectionString 
+  ? neon(connectionString) 
   : sqlFallback;
 
 // Función de inicialización de la base de datos
