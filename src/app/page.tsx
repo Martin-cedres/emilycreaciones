@@ -120,26 +120,6 @@ export default async function Home() {
         </section>
       )}
 
-      {/* EMPTY STATE */}
-      {destacados.length === 0 && recientes.length === 0 && (
-        <section className="max-w-4xl mx-auto px-4 py-24 text-center">
-          <div className="bg-brand-beige/50 border-2 border-dashed border-pink-100 rounded-[3rem] p-12 md:p-20">
-            <span className="text-7xl block mb-6 animate-pulse">🪵</span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">¡Nuestros muebles están en camino!</h2>
-            <p className="text-gray-500 text-lg max-w-lg mx-auto leading-relaxed mb-10">
-              Estamos trabajando en nuevas piezas artesanales. Muy pronto podrás ver nuestro catálogo completo aquí.
-            </p>
-            <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "59897866568"}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-bold rounded-full hover:bg-black transition-all shadow-lg"
-            >
-              💬 Consultar stock por WhatsApp
-            </a>
-          </div>
-        </section>
-      )}
     </>
   );
 }
