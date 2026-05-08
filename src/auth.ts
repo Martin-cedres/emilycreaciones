@@ -6,16 +6,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       name: "Acceso Admin",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "tu@email.com" },
+        username: { label: "Usuario", type: "text", placeholder: "admin" },
         password: { label: "Contraseña", type: "password" }
       },
       async authorize(credentials) {
-        const allowedEmails = (process.env.ADMIN_EMAILS || "").split(",").map(e => e.trim());
-        const email = credentials?.email as string;
+        const username = credentials?.username as string;
         const password = credentials?.password as string;
         
-        if (allowedEmails.includes(email) && password === "emily2026") {
-          return { id: "1", email: email, name: "Administrador" };
+        if (username === "admin" && password === "emily2026") {
+          return { id: "1", name: "Administrador", email: "admin@emilycreaciones.com" };
         }
         return null;
       }
