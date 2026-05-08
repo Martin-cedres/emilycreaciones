@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFAF5; 
+  --foreground: #2D2D2D; 
+  
+  --brand-pink-light: #FCE7F3;
+  --brand-pink: #DB2777; /* Rosa más vibrante y moderno */
+  --brand-pink-dark: #9D174D;
+  --brand-beige: #FFF5EB;
+  --brand-wood: #8B5E3C;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-pink-light: var(--brand-pink-light);
+  --color-brand-pink-dark: var(--brand-pink-dark);
+  --color-brand-wood: var(--brand-wood);
+  --color-brand-beige: var(--brand-beige);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: radial-gradient(#F9A8C9 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Shadows */
+.shadow-premium {
+  box-shadow: 0 10px 30px -10px rgba(219, 39, 119, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
